@@ -32,11 +32,6 @@
   }
 
   const reveals = document.querySelectorAll(".reveal");
-  const heroReveals = document.querySelectorAll(".hero .reveal");
-
-  requestAnimationFrame(() => {
-    heroReveals.forEach((el) => el.classList.add("is-visible"));
-  });
 
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
@@ -50,9 +45,7 @@
       },
       { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
     );
-    reveals.forEach((el) => {
-      if (!el.closest(".hero")) observer.observe(el);
-    });
+    reveals.forEach((el) => observer.observe(el));
   } else {
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
